@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FO Tecnología | Catálogo y Gestión</title>
+    <title>FO Tecnología | Catálogo Gamer</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -16,63 +16,53 @@
             font-family: 'DM Sans', sans-serif; margin: 0; padding-bottom: 50px;
         }
 
-        /* --- Header y Navegación --- */
         header {
-            padding: 2rem; text-align: center;
+            padding: 4rem 1rem; text-align: center;
             background: linear-gradient(180deg, #16161f 0%, var(--bg) 100%);
         }
 
-        h1 { font-family: 'Syne', sans-serif; color: var(--accent); letter-spacing: 2px; }
+        h1 { font-family: 'Syne', sans-serif; color: var(--accent); letter-spacing: 3px; font-size: 2.5rem; margin: 0; }
 
-        nav { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
-        nav button { 
-            background: none; border: 1px solid var(--accent); color: var(--accent);
-            padding: 8px 15px; border-radius: 20px; cursor: pointer; font-weight: bold;
-        }
-        nav button:hover { background: var(--accent); color: black; }
-
-        .search-container { max-width: 500px; margin: 0 auto 2rem; padding: 0 1rem; }
+        /* Buscador Estilizado */
+        .search-container { max-width: 600px; margin: -25px auto 3rem; padding: 0 1rem; position: relative; z-index: 10; }
         #search-input {
-            width: 100%; padding: 12px 20px; border-radius: 30px;
-            background: var(--surface); border: 1px solid rgba(255,255,255,0.1); color: white;
+            width: 100%; padding: 18px 25px; border-radius: 50px;
+            background: var(--surface); border: 1px solid rgba(255,255,255,0.1);
+            color: white; font-size: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* --- Catálogo --- */
+        /* Catálogo */
         .grid {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem; padding: 2rem; max-width: 1200px; margin: 0 auto;
         }
 
         .card {
-            background: var(--surface); border-radius: 20px; padding: 15px;
-            border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
+            background: var(--surface); border-radius: 20px; padding: 20px;
+            border: 1px solid rgba(255,255,255,0.05); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex; flex-direction: column;
         }
-        .card:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .card img { width: 100%; height: 200px; object-fit: contain; border-radius: 10px; background: #1a1a24; }
-        .price { font-size: 1.5rem; color: var(--accent); font-weight: bold; margin: 10px 0; }
+        .card:hover { border-color: var(--accent); transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,229,160,0.1); }
+        .card img { width: 100%; height: 230px; object-fit: contain; border-radius: 15px; background: #1a1a24; margin-bottom: 15px; }
+        .card h3 { font-family: 'Syne', sans-serif; margin: 10px 0; font-size: 1.1rem; line-height: 1.2; height: 2.4em; overflow: hidden; }
+        .price { font-size: 1.6rem; color: var(--accent); font-weight: bold; margin: 10px 0 20px; }
+        
         .btn-wa {
-            display: block; background: var(--wa); color: black; text-align: center;
-            padding: 12px; border-radius: 10px; text-decoration: none; font-weight: bold;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: var(--wa); color: black; text-align: center;
+            padding: 14px; border-radius: 12px; text-decoration: none; font-weight: bold; transition: 0.3s;
         }
+        .btn-wa:hover { filter: brightness(1.1); transform: scale(1.02); }
 
-        /* --- Panel Administrador --- */
-        #admin-panel { max-width: 800px; margin: 0 auto; padding: 2rem; display: none; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; color: var(--muted); }
-        input { 
-            width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #333;
-            background: #1a1a24; color: white; box-sizing: border-box;
-        }
-        .btn-save { 
-            background: var(--accent); color: black; border: none; padding: 12px 20px; 
-            border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%;
-        }
-
-        .admin-list { margin-top: 30px; border-top: 1px solid #333; padding-top: 20px; }
-        .admin-item { 
-            display: flex; justify-content: space-between; align-items: center; 
-            background: var(--surface); padding: 10px; border-radius: 8px; margin-bottom: 10px;
-        }
+        /* Panel de Administración (Al final) */
+        hr { border: 0; border-top: 1px solid #333; margin: 100px 0 50px; }
+        #admin-auth, #admin-content { max-width: 500px; margin: 0 auto 100px; padding: 2rem; background: var(--surface); border-radius: 20px; text-align: center; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        label { display: block; margin-bottom: 5px; color: var(--muted); font-size: 0.9rem; }
+        input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #0a0a0f; color: white; box-sizing: border-box; }
+        .btn-action { background: var(--accent); color: black; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px; }
+        
+        .admin-item { display: flex; justify-content: space-between; align-items: center; background: #0a0a0f; padding: 10px; border-radius: 8px; margin-bottom: 10px; font-size: 0.9rem; }
         .btn-delete { background: var(--danger); border: none; color: white; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
     </style>
 </head>
@@ -80,77 +70,95 @@
 
 <header>
     <h1>FO TECNOLOGÍA</h1>
-    <nav>
-        <button onclick="showSection('catalog')">Ver Catálogo</button>
-        <button onclick="showSection('admin')">Panel Admin</button>
-    </nav>
 </header>
 
 <section id="catalog-section">
     <div class="search-container">
-        <input type="text" id="search-input" placeholder="Buscar productos de Compulandia..." oninput="renderCatalog()">
+        <input type="text" id="search-input" placeholder="Buscar notebooks, procesadores, gráficas..." oninput="renderCatalog()">
     </div>
     <div class="grid" id="product-grid"></div>
 </section>
 
-<section id="admin-panel">
-    <h2>Cargar Nuevo Producto</h2>
-    <div class="form-group">
-        <label>Nombre del Producto</label>
-        <input type="text" id="p-name" placeholder="Ej: Memoria RAM 16GB DDR4">
-    </div>
-    <div class="form-group">
-        <label>Precio (en Guaraníes, solo números)</label>
-        <input type="number" id="p-price" placeholder="Ej: 350000">
-    </div>
-    <div class="form-group">
-        <label>URL de la Imagen (de Compulandia)</label>
-        <input type="text" id="p-img" placeholder="Haz clic derecho en la foto de Compulandia y 'Copiar dirección de imagen'">
-    </div>
-    <button class="btn-save" onclick="saveProduct()">Guardar Producto</button>
+<hr>
 
-    <div class="admin-list" id="admin-list">
-        <h3>Productos actuales</h3>
+<section id="admin-auth">
+    <h3>Acceso Administración</h3>
+    <div class="form-group">
+        <input type="password" id="admin-pass" placeholder="Contraseña de administrador">
+    </div>
+    <button class="btn-action" onclick="checkAuth()">Ingresar al Panel</button>
+</section>
+
+<section id="admin-content" style="display: none;">
+    <h3>Gestión de Catálogo</h3>
+    <div class="form-group">
+        <label>Nombre del Producto (desde Compulandia)</label>
+        <input type="text" id="p-name" placeholder="Ej: Notebook HP Victus 15-FA1093DX">
+    </div>
+    <div class="form-group">
+        <label>Precio (Gs.)</label>
+        <input type="number" id="p-price" placeholder="7500000">
+    </div>
+    <div class="form-group">
+        <label>URL de Imagen</label>
+        <input type="text" id="p-img" placeholder="Pegar link de imagen del fabricante o proveedor">
+    </div>
+    <button class="btn-action" onclick="saveProduct()">Publicar Producto</button>
+
+    <div id="admin-list" style="margin-top: 30px;">
         </div>
+    <button onclick="logout()" style="background:none; border:none; color:var(--muted); cursor:pointer; margin-top:20px;">Cerrar Sesión</button>
 </section>
 
 <script>
-    const WHATSAPP_NUM = "59598XXXXXXXX"; // TU NÚMERO AQUÍ
+    const WHATSAPP_NUM = "59598XXXXXXXX"; // Reemplaza por tu número real
+    const ADMIN_KEY = "1234"; // CAMBIA TU CONTRASEÑA AQUÍ
+    
     let products = JSON.parse(localStorage.getItem('fo_products')) || [];
 
-    function showSection(section) {
-        document.getElementById('catalog-section').style.display = section === 'catalog' ? 'block' : 'none';
-        document.getElementById('admin-panel').style.display = section === 'admin' ? 'block' : 'none';
-        if(section === 'admin') renderAdminList();
+    // Seguridad Simple
+    function checkAuth() {
+        const pass = document.getElementById('admin-pass').value;
+        if(pass === ADMIN_KEY) {
+            document.getElementById('admin-auth').style.display = 'none';
+            document.getElementById('admin-content').style.display = 'block';
+            renderAdminList();
+        } else {
+            alert("Contraseña incorrecta");
+        }
     }
 
+    function logout() {
+        document.getElementById('admin-auth').style.display = 'block';
+        document.getElementById('admin-content').style.display = 'none';
+        document.getElementById('admin-pass').value = "";
+    }
+
+    // Lógica de Productos
     function saveProduct() {
         const name = document.getElementById('p-name').value;
         const price = document.getElementById('p-price').value;
         const img = document.getElementById('p-img').value;
 
-        if(!name || !price || !img) return alert("Completa todos los campos");
+        if(!name || !price || !img) return alert("Por favor, completa todos los datos");
 
-        const newProduct = { id: Date.now(), name, price, img };
-        products.push(newProduct);
+        products.push({ id: Date.now(), name, price, img });
         localStorage.setItem('fo_products', JSON.stringify(products));
         
-        // Limpiar campos
         document.getElementById('p-name').value = "";
         document.getElementById('p-price').value = "";
         document.getElementById('p-img').value = "";
         
-        alert("¡Producto guardado!");
-        renderAdminList();
         renderCatalog();
+        renderAdminList();
     }
 
     function deleteProduct(id) {
-        if(confirm("¿Seguro quieres eliminarlo?")) {
+        if(confirm("¿Eliminar este producto?")) {
             products = products.filter(p => p.id !== id);
             localStorage.setItem('fo_products', JSON.stringify(products));
-            renderAdminList();
             renderCatalog();
+            renderAdminList();
         }
     }
 
@@ -165,14 +173,20 @@
 
         const filtered = products.filter(p => p.name.toLowerCase().includes(search));
 
+        if(filtered.length === 0) {
+            grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--muted);">No se encontraron productos.</p>`;
+        }
+
         filtered.forEach(p => {
-            const msg = encodeURIComponent(`Hola FO Tecnología! Quiero comprar: ${p.name} por ${formatGs(p.price)}`);
+            const msg = encodeURIComponent(`¡Hola FO Tecnología! Me interesa: ${p.name} - ${formatGs(p.price)}`);
             grid.innerHTML += `
                 <div class="card">
-                    <img src="${p.img}" alt="${p.name}">
+                    <img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/300?text=Imagen+No+Disponible'">
                     <h3>${p.name}</h3>
                     <div class="price">${formatGs(p.price)}</div>
-                    <a href="https://wa.me/${WHATSAPP_NUM}?text=${msg}" target="_blank" class="btn-wa">Comprar por WhatsApp</a>
+                    <a href="https://wa.me/${WHATSAPP_NUM}?text=${msg}" target="_blank" class="btn-wa">
+                        Pedir por WhatsApp
+                    </a>
                 </div>
             `;
         });
@@ -180,18 +194,18 @@
 
     function renderAdminList() {
         const list = document.getElementById('admin-list');
-        list.innerHTML = "<h3>Productos actuales</h3>";
+        list.innerHTML = "<h4 style='text-align:left'>Productos en inventario:</h4>";
         products.forEach(p => {
             list.innerHTML += `
                 <div class="admin-item">
-                    <span>${p.name} - ${formatGs(p.price)}</span>
+                    <span style="text-align:left">${p.name.substring(0, 30)}...</span>
                     <button class="btn-delete" onclick="deleteProduct(${p.id})">Borrar</button>
                 </div>
             `;
         });
     }
 
-    // Inicio
+    // Iniciar página
     renderCatalog();
 </script>
 </body>
