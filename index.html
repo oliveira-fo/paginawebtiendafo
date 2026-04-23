@@ -3,129 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FO Tecnología | Catálogo Gamer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>FO Tecnología | Catálogo Premium Gamer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0a0a0f; --surface: #111118; --accent: #00e5a0;
-            --text: #f0f0f5; --muted: #888898; --wa: #25d366; --danger: #ff4757;
+            --bg: #040406; --surface: #0a0a0f; --surface-2: #14141f;
+            --accent: #00ff88; --accent-dim: rgba(0, 255, 136, 0.15);
+            --text: #f0f0f5; --muted: #94a3b8; --wa: #25d366; --danger: #ef4444;
+            --tech-lines: rgba(255, 255, 255, 0.03);
         }
 
         body {
-            background: var(--bg); color: var(--text);
-            font-family: 'DM Sans', sans-serif; margin: 0; padding-bottom: 50px;
+            background-color: var(--bg);
+            background-image: 
+                linear-gradient(var(--tech-lines) 1px, transparent 1px),
+                linear-gradient(90deg, var(--tech-lines) 1px, transparent 1px);
+            background-size: 50px 50px;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            margin: 0; padding-bottom: 50px;
+            overflow-x: hidden;
         }
 
+        /* --- Header Profesional --- */
         header {
-            padding: 4rem 1rem; text-align: center;
-            background: linear-gradient(180deg, #16161f 0%, var(--bg) 100%);
+            padding: 2rem 1rem 5rem; text-align: center;
+            background: radial-gradient(circle at center, #111 0%, var(--bg) 70%);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: relative;
         }
 
-        h1 { font-family: 'Syne', sans-serif; color: var(--accent); letter-spacing: 3px; font-size: 2.5rem; margin: 0; }
+        .logo-placeholder {
+            font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800;
+            color: white; text-transform: uppercase; letter-spacing: 2px;
+            border: 2px solid white; padding: 10px 20px; display: inline-block;
+            margin-bottom: 1rem;
+            /* CUANDO TENGAS TU LOGO, REEMPLAZA ESTO POR UNA ETIQUETA <img> */
+        }
 
-        /* Buscador Estilizado */
-        .search-container { max-width: 600px; margin: -25px auto 3rem; padding: 0 1rem; position: relative; z-index: 10; }
+        header p { color: var(--muted); max-width: 500px; margin: 0 auto; font-size: 1rem; }
+
+        /* --- Buscador Tech --- */
+        .search-container { max-width: 650px; margin: -30px auto 4rem; padding: 0 1.5rem; position: relative; z-index: 10; }
         #search-input {
-            width: 100%; padding: 18px 25px; border-radius: 50px;
-            background: var(--surface); border: 1px solid rgba(255,255,255,0.1);
-            color: white; font-size: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            width: 100%; padding: 20px 30px; border-radius: 12px;
+            background: var(--surface-2); border: 1px solid rgba(255,255,255,0.08);
+            color: white; font-size: 1.1rem; box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+            transition: 0.3s;
         }
+        #search-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 20px var(--accent-dim); }
 
-        /* Catálogo */
+        /* --- Catálogo Grid --- */
         .grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem; padding: 2rem; max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem; padding: 0 2rem; max-width: 1300px; margin: 0 auto;
         }
 
         .card {
-            background: var(--surface); border-radius: 20px; padding: 20px;
-            border: 1px solid rgba(255,255,255,0.05); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex; flex-direction: column;
+            background: var(--surface); border-radius: 16px; padding: 20px;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            display: flex; flex-direction: column; position: relative; overflow: hidden;
         }
-        .card:hover { border-color: var(--accent); transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,229,160,0.1); }
-        .card img { width: 100%; height: 230px; object-fit: contain; border-radius: 15px; background: #1a1a24; margin-bottom: 15px; }
-        .card h3 { font-family: 'Syne', sans-serif; margin: 10px 0; font-size: 1.1rem; line-height: 1.2; height: 2.4em; overflow: hidden; }
-        .price { font-size: 1.6rem; color: var(--accent); font-weight: bold; margin: 10px 0 20px; }
+        .card::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            transform: scaleX(0); transition: 0.4s;
+        }
+        .card:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.1); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .card:hover::after { transform: scaleX(1); }
+
+        .card img { width: 100%; height: 250px; object-fit: contain; border-radius: 12px; background: #0e0e14; margin-bottom: 20px; }
+        .card h3 { font-family: 'Syne', sans-serif; margin: 0 0 10px; font-size: 1.2rem; line-height: 1.3; color: white; height: 2.6em; overflow: hidden; }
+        .price { font-size: 1.8rem; color: var(--accent); font-weight: 700; margin-bottom: 20px; font-family: 'Syne', sans-serif; }
         
         .btn-wa {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            background: var(--wa); color: black; text-align: center;
-            padding: 14px; border-radius: 12px; text-decoration: none; font-weight: bold; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            background: var(--wa); color: #021a0c; text-align: center;
+            padding: 16px; border-radius: 10px; text-decoration: none; font-weight: 700; transition: 0.3s;
         }
-        .btn-wa:hover { filter: brightness(1.1); transform: scale(1.02); }
+        .btn-wa:hover { filter: brightness(1.1); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); }
 
-        /* Panel de Administración (Al final) */
-        hr { border: 0; border-top: 1px solid #333; margin: 100px 0 50px; }
-        #admin-auth, #admin-content { max-width: 500px; margin: 0 auto 100px; padding: 2rem; background: var(--surface); border-radius: 20px; text-align: center; }
-        .form-group { margin-bottom: 15px; text-align: left; }
-        label { display: block; margin-bottom: 5px; color: var(--muted); font-size: 0.9rem; }
-        input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #0a0a0f; color: white; box-sizing: border-box; }
-        .btn-action { background: var(--accent); color: black; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px; }
+        /* --- Panel Administrador Pro --- */
+        hr { border: 0; border-top: 1px solid rgba(255,255,255,0.05); margin: 120px 0 60px; }
+        #admin-auth, #admin-content { max-width: 600px; margin: 0 auto 100px; padding: 3rem; background: var(--surface); border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
         
-        .admin-item { display: flex; justify-content: space-between; align-items: center; background: #0a0a0f; padding: 10px; border-radius: 8px; margin-bottom: 10px; font-size: 0.9rem; }
-        .btn-delete { background: var(--danger); border: none; color: white; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+        .admin-title { font-family: 'Syne', sans-serif; color: white; margin-top: 0; }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 0.9rem; font-weight: 500; }
+        
+        input[type="text"], input[type="number"], input[type="password"], input[type="file"] {
+            width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #222; background: var(--bg); color: white; box-sizing: border-box; font-family: 'DM Sans', sans-serif;
+        }
+        input:focus { outline: none; border-color: #444; }
+
+        /* Estilo dropzone para archivo */
+        input[type="file"] { padding: 10px; background: var(--surface-2); border: 2px dashed #333; cursor: pointer; }
+        input[type="file"]:hover { border-color: var(--accent); }
+
+        .btn-action { background: white; color: black; border: none; padding: 15px 25px; border-radius: 8px; cursor: pointer; font-weight: 700; width: 100%; font-size: 1rem; transition: 0.3s; }
+        .btn-action:hover { background: var(--accent); }
+        .btn-action:disabled { opacity: 0.5; cursor: not-allowed; }
+        
+        #upload-status { font-size: 0.8rem; color: var(--accent); margin-top: 5px; display: none; }
+
+        .admin-item { display: flex; justify-content: space-between; align-items: center; background: var(--bg); padding: 15px; border-radius: 8px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.03); }
+        .btn-delete { background: none; border: 1px solid var(--danger); color: var(--danger); padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: 500; transition: 0.3s; }
+        .btn-delete:hover { background: var(--danger); color: white; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .grid { grid-template-columns: 1fr; padding: 0 1.5rem; }
+            #admin-auth, #admin-content { margin: 0 1rem 100px; padding: 2rem; }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>FO TECNOLOGÍA</h1>
+    <div class="logo-placeholder">FO TECNOLOGÍA</div>
+    <p>Premium Hardware & Custom PCs. Importadores directos.</p>
 </header>
 
 <section id="catalog-section">
     <div class="search-container">
-        <input type="text" id="search-input" placeholder="Buscar notebooks, procesadores, gráficas..." oninput="renderCatalog()">
+        <input type="text" id="search-input" placeholder="Buscar notebook, gráfica, periféricos..." oninput="renderCatalog()">
     </div>
-    <div class="grid" id="product-grid"></div>
+    <div class="grid" id="product-grid">
+        </div>
 </section>
 
 <hr>
 
 <section id="admin-auth">
-    <h3>Acceso Administración</h3>
+    <h3 class="admin-title">Panel de Control</h3>
     <div class="form-group">
-        <input type="password" id="admin-pass" placeholder="Contraseña de administrador">
+        <input type="password" id="admin-pass" placeholder="Contraseña de acceso">
     </div>
-    <button class="btn-action" onclick="checkAuth()">Ingresar al Panel</button>
+    <button class="btn-action" onclick="checkAuth()">Ingresar</button>
 </section>
 
 <section id="admin-content" style="display: none;">
-    <h3>Gestión de Catálogo</h3>
+    <h3 class="admin-title">Cargar Producto</h3>
     <div class="form-group">
-        <label>Nombre del Producto (desde Compulandia)</label>
-        <input type="text" id="p-name" placeholder="Ej: Notebook HP Victus 15-FA1093DX">
+        <label>Nombre Completo</label>
+        <input type="text" id="p-name" placeholder="Ej: ASUS ROG Strix Scar 18 (2024)">
     </div>
     <div class="form-group">
         <label>Precio (Gs.)</label>
-        <input type="number" id="p-price" placeholder="7500000">
+        <input type="number" id="p-price" placeholder="18500000">
     </div>
     <div class="form-group">
-        <label>URL de Imagen</label>
-        <input type="text" id="p-img" placeholder="Pegar link de imagen del fabricante o proveedor">
+        <label>Imagen del Producto (Desde tu PC)</label>
+        <input type="file" id="p-image-file" accept="image/*">
+        <div id="upload-status">Subiendo imagen...</div>
     </div>
-    <button class="btn-action" onclick="saveProduct()">Publicar Producto</button>
+    <button class="btn-action" id="btn-publish" onclick="prepareAndSave()">Publicar en Catálogo</button>
 
-    <div id="admin-list" style="margin-top: 30px;">
+    <div id="admin-list" style="margin-top: 40px; border-top: 1px solid #222; padding-top: 20px;">
         </div>
-    <button onclick="logout()" style="background:none; border:none; color:var(--muted); cursor:pointer; margin-top:20px;">Cerrar Sesión</button>
+    <button onclick="logout()" style="background:none; border:none; color:var(--muted); cursor:pointer; margin-top:30px; font-size:0.9rem;">Cerrar Sesión Segura</button>
 </section>
 
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
+
 <script>
-    const WHATSAPP_NUM = "59598XXXXXXXX"; // Reemplaza por tu número real
-    const ADMIN_KEY = "1234"; // CAMBIA TU CONTRASEÑA AQUÍ
-    
+    // --- 1. CONFIGURACIÓN ---
+    const WHATSAPP_NUM = "59598XXXXXXXX"; // Reemplaza por tu número
+    const ADMIN_KEY = "1234"; // CAMBIA TU CONTRASEÑA
+
+    // REEMPLAZA ESTO CON TUS DATOS DE FIREBASE (Paso 4 de las instrucciones)
+    const firebaseConfig = {
+        apiKey: "TU_API_KEY",
+        authDomain: "TU_PROJECT_ID.firebaseapp.com",
+        projectId: "TU_PROJECT_ID",
+        storageBucket: "TU_PROJECT_ID.appspot.com",
+        messagingSenderId: "TU_SENDER_ID",
+        appId: "TU_APP_ID"
+    };
+
+    // Inicializar Firebase
+    firebase.initializeApp(firebaseConfig);
+    const storage = firebase.storage();
+
+    // Estado Local
     let products = JSON.parse(localStorage.getItem('fo_products')) || [];
 
-    // Seguridad Simple
+    // --- 2. LÓGICA DE SUBIDA DE IMÁGENES (PC a Firebase) ---
+    async function uploadImage() {
+        const fileInput = document.getElementById('p-image-file');
+        const file = fileInput.files[0];
+        const status = document.getElementById('upload-status');
+        const btnPublish = document.getElementById('btn-publish');
+
+        if (!file) {
+            alert("Por favor selecciona una imagen desde tu equipo.");
+            return null;
+        }
+
+        // Crear referencia única para la imagen
+        const fileName = `${Date.now()}_${file.name}`;
+        const storageRef = storage.ref(`productos/${fileName}`);
+
+        try {
+            status.style.display = 'block';
+            status.innerText = "Subiendo imagen al servidor tech...";
+            btnPublish.disabled = true;
+
+            // Subir archivo
+            const snapshot = await storageRef.put(file);
+            // Obtener URL de descarga
+            const downloadURL = await snapshot.ref.getDownloadURL();
+            
+            status.innerText = "¡Imagen sincronizada!";
+            return downloadURL;
+
+        } catch (error) {
+            console.error("Error en Firebase:", error);
+            alert("Error al subir la imagen. Revisa la configuración de Firebase Storage.");
+            status.style.display = 'none';
+            return null;
+        } finally {
+            btnPublish.disabled = false;
+        }
+    }
+
+    // --- 3. LÓGICA GENERAL ---
+    async function prepareAndSave() {
+        const name = document.getElementById('p-name').value;
+        const price = document.getElementById('p-price').value;
+        
+        if(!name || !price) return alert("Completa nombre y precio.");
+
+        // Primero subimos la imagen y esperamos el link
+        const imgUrl = await uploadImage();
+        
+        if(imgUrl) {
+            // Si la subida fue exitosa, guardamos el producto
+            products.push({ id: Date.now(), name, price, img: imgUrl });
+            localStorage.setItem('fo_products', JSON.stringify(products));
+            
+            // Limpiar formulario
+            document.getElementById('p-name').value = "";
+            document.getElementById('p-price').value = "";
+            document.getElementById('p-image-file').value = "";
+            document.getElementById('upload-status').style.display = 'none';
+            
+            renderCatalog();
+            renderAdminList();
+            alert("Producto publicado exitosamente.");
+        }
+    }
+
+    // (El resto de funciones checkAuth, logout, deleteProduct, formatGs, renderCatalog son similares pero con diseño actualizado)
+    
     function checkAuth() {
-        const pass = document.getElementById('admin-pass').value;
-        if(pass === ADMIN_KEY) {
+        if(document.getElementById('admin-pass').value === ADMIN_KEY) {
             document.getElementById('admin-auth').style.display = 'none';
             document.getElementById('admin-content').style.display = 'block';
             renderAdminList();
-        } else {
-            alert("Contraseña incorrecta");
-        }
+        } else { alert("Clave incorrecta"); }
     }
 
     function logout() {
@@ -134,27 +272,9 @@
         document.getElementById('admin-pass').value = "";
     }
 
-    // Lógica de Productos
-    function saveProduct() {
-        const name = document.getElementById('p-name').value;
-        const price = document.getElementById('p-price').value;
-        const img = document.getElementById('p-img').value;
-
-        if(!name || !price || !img) return alert("Por favor, completa todos los datos");
-
-        products.push({ id: Date.now(), name, price, img });
-        localStorage.setItem('fo_products', JSON.stringify(products));
-        
-        document.getElementById('p-name').value = "";
-        document.getElementById('p-price').value = "";
-        document.getElementById('p-img').value = "";
-        
-        renderCatalog();
-        renderAdminList();
-    }
-
     function deleteProduct(id) {
-        if(confirm("¿Eliminar este producto?")) {
+        if(confirm("¿Eliminar este producto permanentemente?")) {
+            // Nota: Esto borra el producto de la lista, pero no la imagen de Firebase Storage en esta versión simple.
             products = products.filter(p => p.id !== id);
             localStorage.setItem('fo_products', JSON.stringify(products));
             renderCatalog();
@@ -162,9 +282,7 @@
         }
     }
 
-    function formatGs(num) {
-        return new Intl.NumberFormat('es-PY').format(num) + " Gs.";
-    }
+    function formatGs(num) { return new Intl.NumberFormat('es-PY').format(num) + " Gs."; }
 
     function renderCatalog() {
         const grid = document.getElementById('product-grid');
@@ -173,18 +291,21 @@
 
         const filtered = products.filter(p => p.name.toLowerCase().includes(search));
 
-        if(filtered.length === 0) {
-            grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--muted);">No se encontraron productos.</p>`;
+        if(filtered.length === 0 && products.length > 0) {
+            grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--muted); padding: 40px;">No se encontraron productos para tu búsqueda.</p>`;
+        } else if (products.length === 0) {
+            grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--muted); padding: 40px;">El catálogo está vacío. Usa el panel de administración abajo.</p>`;
         }
 
         filtered.forEach(p => {
             const msg = encodeURIComponent(`¡Hola FO Tecnología! Me interesa: ${p.name} - ${formatGs(p.price)}`);
             grid.innerHTML += `
                 <div class="card">
-                    <img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/300?text=Imagen+No+Disponible'">
+                    <img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x300?text=FO+Tecnologia'">
                     <h3>${p.name}</h3>
                     <div class="price">${formatGs(p.price)}</div>
                     <a href="https://wa.me/${WHATSAPP_NUM}?text=${msg}" target="_blank" class="btn-wa">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.162c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.56 5.333-11.892 11.892-11.892 3.181 0 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.231 3.481 8.404 0 6.56-5.333 11.892-11.893 11.892-1.997 0-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-2.536c1.562.928 3.461 1.419 5.39 1.419 5.733 0 10.395-4.662 10.395-10.395 0-2.778-1.082-5.39-3.048-7.354-1.962-1.967-4.574-3.05-7.347-3.05-5.733 0-10.396 4.662-10.396 10.395 0 2.053.601 4.05 1.737 5.762l-.426 1.56.445-.117zm11.536-7.106c-.301-.151-1.776-.876-2.051-.976-.275-.099-.475-.15-.675.15-.199.301-.775.976-.95 1.176-.175.199-.35.225-.65.075-.301-.151-1.268-.467-2.414-1.489-.893-.796-1.496-1.78-1.272-2.18.225-.301.075-.461.151-.611.151-.199.301-.351.451-.526.151-.175.199-.3.301-.5.101-.199.05-.375-.026-.525-.075-.151-.675-1.626-.925-2.226-.25-.599-.5-.515-.675-.525-.175-.013-.375-.013-.575-.013-.2 0-.525.075-.8.375-.275.301-1.05 1.026-1.05 2.5 0 1.475 1.075 2.9 1.225 3.1.15.199 2.113 3.226 5.12 4.526 3.007 1.3 3.007.866 3.551.816.545-.05 1.776-.726 2.026-1.426.25-.7.25-1.301.175-1.426-.075-.125-.275-.199-.575-.35z"/></svg>
                         Pedir por WhatsApp
                     </a>
                 </div>
@@ -194,11 +315,11 @@
 
     function renderAdminList() {
         const list = document.getElementById('admin-list');
-        list.innerHTML = "<h4 style='text-align:left'>Productos en inventario:</h4>";
+        list.innerHTML = "<h4 style='text-align:left; color:white; margin-bottom:15px;'>Inventario Local</h4>";
         products.forEach(p => {
             list.innerHTML += `
                 <div class="admin-item">
-                    <span style="text-align:left">${p.name.substring(0, 30)}...</span>
+                    <span style="text-align:left; color:var(--muted);">${p.name.substring(0, 35)}...</span>
                     <button class="btn-delete" onclick="deleteProduct(${p.id})">Borrar</button>
                 </div>
             `;
