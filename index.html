@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FO Tecnología | Gestión Pro</title>
+    <title>FO Tecnología | High-End Hardware</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -16,14 +16,11 @@
             background-image: radial-gradient(circle at 2px 2px, rgba(0, 255, 163, 0.05) 1px, transparent 0);
             background-size: 30px 30px;
             color: var(--text); font-family: 'DM Sans', sans-serif; margin: 0;
-            scroll-behavior: smooth;
         }
 
-        /* HEADER */
         header { padding: 4rem 1rem; text-align: center; background: radial-gradient(circle at center, #0e1a14 0%, var(--bg) 80%); }
         .logo-main { max-width: 320px; filter: drop-shadow(0 0 20px rgba(0, 255, 163, 0.3)); margin-bottom: 1rem; }
 
-        /* BUSCADOR Y FILTROS */
         .controls-container { max-width: 800px; margin: -40px auto 4rem; padding: 0 1.5rem; }
         #search-input {
             width: 100%; padding: 20px 25px; border-radius: 15px;
@@ -33,40 +30,40 @@
         }
 
         .filter-tags { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
-        .tag {
-            background: #11111d; border: 1px solid #222; padding: 10px 22px;
-            border-radius: 30px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;
-            color: var(--muted);
-        }
+        .tag { background: #11111d; border: 1px solid #222; padding: 10px 22px; border-radius: 30px; cursor: pointer; color: var(--muted); }
         .tag.active { border-color: var(--accent); color: var(--accent); background: rgba(0,255,163,0.05); }
 
-        /* GRID */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2.5rem; padding: 0 2rem; max-width: 1300px; margin: 0 auto; }
-        .card { background: var(--surface); border-radius: 24px; padding: 25px; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; display: flex; flex-direction: column; }
-        .card img { width: 100%; height: 260px; object-fit: contain; border-radius: 16px; background: #050508; margin-bottom: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2.5rem; padding: 0 2rem; max-width: 1300px; margin: 0 auto; min-height: 400px;}
+        .card { background: var(--surface); border-radius: 24px; padding: 25px; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; }
+        .card img { width: 100%; height: 260px; object-fit: contain; margin-bottom: 20px; }
         .price { color: #fff; font-size: 1.8rem; font-weight: 800; margin-bottom: 25px; font-family: 'Syne', sans-serif; }
-        .btn-wa { background: var(--wa); color: #000; text-decoration: none; padding: 16px; border-radius: 14px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-wa { background: var(--wa); color: #000; text-decoration: none; padding: 16px; border-radius: 14px; font-weight: bold; text-align: center; display: block; }
 
-        /* ADMIN SECTION */
-        .admin-section { background: #08080c; border-top: 1px solid #1a1a24; padding: 6rem 1rem; margin-top: 100px; }
-        .admin-box { max-width: 600px; margin: 0 auto; background: var(--surface); padding: 3rem; border-radius: 24px; border: 1px solid #222; }
-        .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 0.9rem; }
-        input, select { width: 100%; padding: 14px; border-radius: 10px; border: 1px solid #222; background: #030305; color: white; box-sizing: border-box; }
-        
-        .btn-action { background: var(--accent); color: black; border: none; padding: 18px; border-radius: 12px; cursor: pointer; font-weight: 800; width: 100%; }
-        .btn-cancel { background: #333; color: white; border: none; padding: 10px; border-radius: 10px; cursor: pointer; width: 100%; margin-top: 10px; display: none; }
-
-        /* LISTA ADMIN CON EDICIÓN */
-        .admin-item { 
-            display: flex; justify-content: space-between; align-items: center; 
-            background: #050508; padding: 15px; border-radius: 12px; margin-bottom: 10px; border: 1px solid #1a1a1a; 
+        /* MODAL DE ADMINISTRACIÓN */
+        #admin-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 1000; overflow-y: auto; padding: 20px; box-sizing: border-box;
         }
-        .admin-item-info { display: flex; align-items: center; gap: 10px; }
-        .admin-item-info img { width: 40px; height: 40px; object-fit: cover; border-radius: 5px; }
-        .admin-actions { display: flex; gap: 10px; }
-        .btn-edit { color: var(--accent); background: none; border: 1px solid var(--accent); padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; }
-        .btn-del { color: #ff4757; background: none; border: 1px solid #ff4757; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; }
+        .modal-content {
+            background: var(--surface); max-width: 600px; margin: 50px auto;
+            padding: 2rem; border-radius: 24px; border: 1px solid #222; position: relative;
+        }
+        .close-btn { position: absolute; top: 20px; right: 20px; color: white; font-size: 1.5rem; cursor: pointer; background: none; border: none; }
+        
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: var(--muted); font-size: 0.9rem; }
+        input, select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #222; background: #030305; color: white; box-sizing: border-box; }
+        
+        .btn-action { background: var(--accent); color: black; border: none; padding: 15px; border-radius: 10px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px;}
+        .btn-cancel { background: #333; color: white; border: none; padding: 10px; border-radius: 10px; cursor: pointer; width: 100%; margin-top: 5px; display: none; }
+
+        .admin-item { display: flex; justify-content: space-between; align-items: center; background: #050508; padding: 10px; border-radius: 10px; margin-bottom: 8px; border: 1px solid #111; }
+        .admin-item img { width: 35px; height: 35px; object-fit: cover; border-radius: 5px; }
+
+        /* FOOTER */
+        footer { text-align: center; padding: 4rem 1rem; margin-top: 5rem; border-top: 1px solid #111; }
+        .btn-access { background: none; border: 1px solid #222; color: #333; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-size: 0.7rem; }
+        .btn-access:hover { border-color: var(--accent); color: var(--accent); }
     </style>
 </head>
 <body>
@@ -77,8 +74,8 @@
 </header>
 
 <div class="controls-container">
-    <input type="text" id="search-input" placeholder="Buscar producto..." oninput="updateView()">
-    <div class="filter-tags" id="filters">
+    <input type="text" id="search-input" placeholder="¿Qué hardware buscas?" oninput="updateView()">
+    <div class="filter-tags">
         <div class="tag active" onclick="setCategory('Todos', this)">Todos</div>
         <div class="tag" onclick="setCategory('Notebooks', this)">Notebooks</div>
         <div class="tag" onclick="setCategory('Componentes', this)">Componentes</div>
@@ -88,18 +85,22 @@
 
 <div class="grid" id="product-grid"></div>
 
-<section class="admin-section">
-    <div class="admin-box">
-        <h2 id="admin-title" style="font-family:'Syne'; margin-bottom: 1.5rem; text-align: center;">Cargar Nuevo Producto</h2>
+<footer>
+    <button class="btn-access" onclick="openAdmin()">ACCEDER</button>
+</footer>
+
+<div id="admin-modal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeAdmin()">×</button>
+        <h2 id="admin-title" style="text-align:center; font-family:'Syne'">Gestión de Inventario</h2>
         
         <div id="admin-auth" style="text-align: center;">
             <input type="password" id="admin-pass" placeholder="Contraseña">
-            <button class="btn-action" style="margin-top:15px" onclick="checkAuth()">Ingresar al Sistema</button>
+            <button class="btn-action" onclick="checkAuth()">Entrar</button>
         </div>
 
         <div id="admin-form" style="display:none">
             <input type="hidden" id="edit-id">
-
             <div class="form-group">
                 <label>Categoría</label>
                 <select id="p-cat">
@@ -110,28 +111,42 @@
             </div>
             <div class="form-group"><label>Nombre</label><input type="text" id="p-name"></div>
             <div class="form-group"><label>Precio (Gs.)</label><input type="number" id="p-price"></div>
-            <div class="form-group">
-                <label>Imagen (Opcional si ya tiene una)</label>
-                <input type="file" id="p-file" accept="image/*">
-            </div>
+            <div class="form-group"><label>Imagen</label><input type="file" id="p-file" accept="image/*"></div>
             
             <button class="btn-action" id="btn-save" onclick="processProduct()">Publicar Producto</button>
             <button class="btn-cancel" id="btn-cancel" onclick="resetForm()">Cancelar Edición</button>
             
-            <div id="admin-list" style="margin-top:40px;"></div>
+            <div id="admin-list" style="margin-top:30px; border-top: 1px solid #222; padding-top: 20px;"></div>
         </div>
     </div>
-</section>
+</div>
 
 <script>
     const IMGBB_API_KEY = "224e28c7b6d19326d2b17e8de9cb2130";
-    const WHATSAPP_NUM = "+595991961234"; 
+    const WHATSAPP_NUM = "+595991961234"; // Cambia a tu número
     const ADMIN_KEY = "1234";
 
     let products = JSON.parse(localStorage.getItem('fo_products')) || [];
     let activeCategory = "Todos";
 
-    // --- FUNCIÓN PRINCIPAL: CARGAR O EDITAR ---
+    function openAdmin() { document.getElementById('admin-modal').style.display = 'block'; }
+    function closeAdmin() { 
+        document.getElementById('admin-modal').style.display = 'none'; 
+        resetForm();
+        // Reset auth
+        document.getElementById('admin-auth').style.display = 'block';
+        document.getElementById('admin-form').style.display = 'none';
+        document.getElementById('admin-pass').value = '';
+    }
+
+    function checkAuth() {
+        if(document.getElementById('admin-pass').value === ADMIN_KEY) {
+            document.getElementById('admin-auth').style.display = 'none';
+            document.getElementById('admin-form').style.display = 'block';
+            renderAdminList();
+        } else { alert("Contraseña incorrecta"); }
+    }
+
     async function processProduct() {
         const file = document.getElementById('p-file').files[0];
         const name = document.getElementById('p-name').value;
@@ -140,56 +155,43 @@
         const editId = document.getElementById('edit-id').value;
         const btn = document.getElementById('btn-save');
 
-        if(!name || !price) return alert("Nombre y Precio son obligatorios.");
-
-        btn.innerText = "Procesando..."; btn.disabled = true;
+        if(!name || !price) return alert("Nombre y Precio son requeridos");
+        btn.innerText = "Cargando..."; btn.disabled = true;
 
         let imageUrl = "";
-
-        // Si hay un archivo nuevo, lo subimos
         if(file) {
             const formData = new FormData();
             formData.append("image", file);
             try {
                 const resp = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: "POST", body: formData });
-                const result = await resp.json();
-                if(result.success) imageUrl = result.data.url;
-            } catch (e) { alert("Error al subir imagen."); }
+                const res = await resp.json();
+                if(res.success) imageUrl = res.data.url;
+            } catch (e) { alert("Error al subir imagen"); }
         }
 
         if(editId) {
-            // MODO EDICIÓN
-            const index = products.findIndex(p => p.id == editId);
-            products[index].name = name;
-            products[index].price = price;
-            products[index].cat = cat;
-            if(imageUrl) products[index].img = imageUrl; // Solo cambia imagen si subió una nueva
+            const idx = products.findIndex(p => p.id == editId);
+            products[idx] = { ...products[idx], name, price, cat };
+            if(imageUrl) products[idx].img = imageUrl;
         } else {
-            // MODO NUEVO
-            if(!imageUrl) { alert("Debes subir una imagen para productos nuevos."); btn.innerText = "Publicar Producto"; btn.disabled = false; return; }
+            if(!imageUrl) { alert("Imagen requerida"); btn.innerText = "Publicar"; btn.disabled = false; return; }
             products.push({ id: Date.now(), name, price, cat, img: imageUrl });
         }
 
         localStorage.setItem('fo_products', JSON.stringify(products));
-        resetForm();
-        updateView();
-        renderAdminList();
-        alert("¡Sistema actualizado!");
+        resetForm(); renderAdminList(); updateView();
+        alert("¡Guardado!");
     }
 
-    // --- MODO EDICIÓN: LLENAR EL FORMULARIO ---
     function editProduct(id) {
         const p = products.find(prod => prod.id == id);
         document.getElementById('edit-id').value = p.id;
         document.getElementById('p-name').value = p.name;
         document.getElementById('p-price').value = p.price;
         document.getElementById('p-cat').value = p.cat;
-        
-        document.getElementById('admin-title').innerText = "Editando: " + p.name;
+        document.getElementById('admin-title').innerText = "Editando Producto";
         document.getElementById('btn-save').innerText = "Guardar Cambios";
         document.getElementById('btn-cancel').style.display = "block";
-        
-        window.scrollTo(0, document.body.scrollHeight);
     }
 
     function resetForm() {
@@ -197,19 +199,43 @@
         document.getElementById('p-name').value = "";
         document.getElementById('p-price').value = "";
         document.getElementById('p-file').value = "";
-        document.getElementById('admin-title').innerText = "Cargar Nuevo Producto";
+        document.getElementById('admin-title').innerText = "Gestión de Inventario";
         document.getElementById('btn-save').innerText = "Publicar Producto";
         document.getElementById('btn-save').disabled = false;
         document.getElementById('btn-cancel').style.display = "none";
     }
 
-    // --- FUNCIONES DE VISTA ---
-    function checkAuth() {
-        if(document.getElementById('admin-pass').value === ADMIN_KEY) {
-            document.getElementById('admin-auth').style.display = 'none';
-            document.getElementById('admin-form').style.display = 'block';
-            renderAdminList();
-        } else { alert("Clave incorrecta"); }
+    function renderAdminList() {
+        const list = document.getElementById('admin-list');
+        list.innerHTML = "<h4>Lista de Productos</h4>";
+        products.forEach(p => {
+            list.innerHTML += `
+                <div class="admin-item">
+                    <div style="display:flex; align-items:center; gap:10px">
+                        <img src="${p.img}">
+                        <span>${p.name.substring(0,15)}...</span>
+                    </div>
+                    <div>
+                        <button onclick="editProduct(${p.id})" style="color:var(--accent); background:none; border:none; cursor:pointer">Editar</button>
+                        <button onclick="deleteP(${p.id})" style="color:#ff4757; background:none; border:none; cursor:pointer; margin-left:10px">Borrar</button>
+                    </div>
+                </div>`;
+        });
+    }
+
+    function deleteP(id) {
+        if(confirm("¿Eliminar producto?")) {
+            products = products.filter(p => p.id !== id);
+            localStorage.setItem('fo_products', JSON.stringify(products));
+            updateView(); renderAdminList();
+        }
+    }
+
+    function setCategory(cat, el) {
+        activeCategory = cat;
+        document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+        el.classList.add('active');
+        updateView();
     }
 
     function updateView() {
@@ -222,43 +248,11 @@
         }).map(p => `
             <div class="card">
                 <img src="${p.img}">
-                <h3>${p.name}</h3>
+                <div style="color:var(--accent); font-size:0.7rem; font-weight:bold; letter-spacing:1px">${p.cat.toUpperCase()}</div>
+                <h3 style="font-family:'Syne'; margin:10px 0">${p.name}</h3>
                 <div class="price">${new Intl.NumberFormat('es-PY').format(p.price)} Gs.</div>
-                <a href="https://wa.me/${WHATSAPP_NUM}?text=Me interesa: ${p.name}" class="btn-wa">🛒 Consultar</a>
+                <a href="https://wa.me/${WHATSAPP_NUM}?text=Me interesa: ${p.name}" class="btn-wa">Consultar</a>
             </div>`).join('');
-    }
-
-    function renderAdminList() {
-        const list = document.getElementById('admin-list');
-        list.innerHTML = "<h4>Productos en Sistema</h4>";
-        products.forEach(p => {
-            list.innerHTML += `
-                <div class="admin-item">
-                    <div class="admin-item-info">
-                        <img src="${p.img}">
-                        <span>${p.name.substring(0,20)}...</span>
-                    </div>
-                    <div class="admin-actions">
-                        <button class="btn-edit" onclick="editProduct(${p.id})">Editar</button>
-                        <button class="btn-del" onclick="deleteP(${p.id})">Borrar</button>
-                    </div>
-                </div>`;
-        });
-    }
-
-    function deleteP(id) {
-        if(confirm("¿Borrar permanentemente?")) {
-            products = products.filter(p => p.id !== id);
-            localStorage.setItem('fo_products', JSON.stringify(products));
-            updateView(); renderAdminList();
-        }
-    }
-
-    function setCategory(cat, el) {
-        activeCategory = cat;
-        document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
-        el.classList.add('active');
-        updateView();
     }
 
     updateView();
