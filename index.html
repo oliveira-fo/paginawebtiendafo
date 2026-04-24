@@ -3,111 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FO Tecnología | High-End Hardware Paraguay</title>
+    <title>FO Tecnología | High-End Hardware</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #050508; --surface: #0e0e16; --accent: #00ffa3;
             --text: #ffffff; --muted: #94a3b8; --wa: #25d366;
-            --glow: rgba(0, 255, 163, 0.1);
         }
 
         body {
             background-color: var(--bg);
-            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
-            background-size: 40px 40px;
+            background-image: radial-gradient(circle at 2px 2px, rgba(0, 255, 163, 0.05) 1px, transparent 0);
+            background-size: 30px 30px;
             color: var(--text); font-family: 'DM Sans', sans-serif; margin: 0;
             scroll-behavior: smooth;
         }
 
-        /* HEADER */
+        /* HEADER CON EL NUEVO LOGO */
         header {
-            padding: 3rem 1rem; text-align: center;
-            background: linear-gradient(to bottom, #112, transparent);
+            padding: 4rem 1rem; text-align: center;
+            background: radial-gradient(circle at center, #0e1a14 0%, var(--bg) 80%);
         }
         .logo-main {
-            max-width: 220px; filter: drop-shadow(0 0 10px var(--accent));
-            margin-bottom: 1rem; transition: 0.3s;
+            max-width: 320px; /* Tamaño ajustado para tu nuevo logo */
+            filter: drop-shadow(0 0 20px rgba(0, 255, 163, 0.3));
+            margin-bottom: 1rem;
+            transition: 0.4s ease;
         }
-        .logo-main:hover { transform: scale(1.05); }
+        .logo-main:hover { transform: scale(1.05); filter: drop-shadow(0 0 30px rgba(0, 255, 163, 0.5)); }
 
-        /* BUSQUEDA Y FILTROS */
-        .controls-container {
-            max-width: 800px; margin: 0 auto 3rem; padding: 0 1rem;
-        }
-        .search-box {
-            position: relative; margin-bottom: 1.5rem;
-        }
+        /* BUSCADOR Y FILTROS */
+        .controls-container { max-width: 800px; margin: -40px auto 4rem; padding: 0 1.5rem; }
         #search-input {
-            width: 100%; padding: 18px 25px; border-radius: 12px;
+            width: 100%; padding: 20px 25px; border-radius: 15px;
             background: var(--surface); border: 1px solid rgba(255,255,255,0.1);
-            color: white; font-size: 1rem; outline: none; box-sizing: border-box;
+            color: white; font-size: 1.1rem; outline: none; box-sizing: border-box;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
-        #search-input:focus { border-color: var(--accent); box-shadow: 0 0 15px var(--glow); }
+        #search-input:focus { border-color: var(--accent); box-shadow: 0 0 20px rgba(0, 255, 163, 0.2); }
 
-        .filter-tags {
-            display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
-        }
+        .filter-tags { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
         .tag {
-            background: #161625; border: 1px solid #222; padding: 8px 18px;
+            background: #11111d; border: 1px solid #222; padding: 10px 22px;
             border-radius: 30px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;
+            color: var(--muted); font-weight: 500;
         }
-        .tag:hover, .tag.active { border-color: var(--accent); color: var(--accent); background: rgba(0,255,163,0.05); }
+        .tag.active, .tag:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,255,163,0.05); }
 
-        /* CATALOGO */
+        /* GRID DE PRODUCTOS */
         .grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem; padding: 0 2rem; max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem; padding: 0 2rem; max-width: 1300px; margin: 0 auto;
         }
         .card {
-            background: var(--surface); border-radius: 20px; padding: 20px;
-            border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
-            display: flex; flex-direction: column;
+            background: var(--surface); border-radius: 24px; padding: 25px;
+            border: 1px solid rgba(255,255,255,0.05); transition: 0.4s;
+            display: flex; flex-direction: column; position: relative;
         }
-        .card:hover { transform: translateY(-8px); border-color: var(--accent); }
-        .card img { width: 100%; height: 240px; object-fit: contain; border-radius: 12px; background: #050508; margin-bottom: 15px; }
-        .card h3 { font-family: 'Syne', sans-serif; font-size: 1.15rem; margin: 0 0 10px; height: 2.4em; overflow: hidden; }
-        .price { color: var(--accent); font-size: 1.7rem; font-weight: 800; margin-bottom: 20px; }
-        .category-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
+        .card img { width: 100%; height: 260px; object-fit: contain; border-radius: 16px; background: #050508; margin-bottom: 20px; }
+        .card .cat-badge { font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; font-weight: bold; margin-bottom: 8px; }
+        .card h3 { font-family: 'Syne', sans-serif; font-size: 1.25rem; margin: 0 0 10px; height: 2.5em; overflow: hidden; }
+        .price { color: #fff; font-size: 1.8rem; font-weight: 800; margin-bottom: 25px; font-family: 'Syne', sans-serif; }
 
         .btn-wa {
-            background: var(--wa); color: black; text-decoration: none;
-            padding: 14px; border-radius: 10px; font-weight: bold;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
+            background: var(--wa); color: #000; text-decoration: none;
+            padding: 16px; border-radius: 14px; font-weight: bold;
+            display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s;
         }
+        .btn-wa:hover { filter: brightness(1.1); transform: scale(1.02); }
 
-        /* ADMIN AL FINAL */
-        .footer-admin-trigger { text-align: center; margin: 100px 0 20px; color: #222; font-size: 0.8rem; cursor: pointer; }
-        
-        #admin-panel {
-            background: #08080c; border-top: 1px solid #1a1a24; padding: 4rem 1rem;
-            margin-top: 50px;
+        /* PANEL ADMIN AL FINAL */
+        .admin-section {
+            background: #08080c; border-top: 1px solid #1a1a24; padding: 6rem 1rem;
+            margin-top: 100px; text-align: center;
         }
-        .admin-box { max-width: 500px; margin: 0 auto; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-size: 0.9rem; color: var(--muted); }
+        .admin-box { max-width: 500px; margin: 0 auto; background: var(--surface); padding: 3rem; border-radius: 24px; border: 1px solid #222; }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 0.9rem; }
         input, select { 
-            width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #222; 
-            background: #030305; color: white; box-sizing: border-box;
+            width: 100%; padding: 14px; border-radius: 10px; border: 1px solid #222;
+            background: #030305; color: white; box-sizing: border-box; outline: none;
         }
-        .btn-publish { background: var(--accent); color: black; border: none; padding: 16px; border-radius: 8px; width: 100%; cursor: pointer; font-weight: bold; }
-        
-        .admin-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #111; margin-bottom: 5px; border-radius: 8px; font-size: 0.85rem; }
-        .btn-del { color: #ff4757; border: none; background: none; cursor: pointer; }
+        input:focus { border-color: var(--accent); }
+        .btn-action { 
+            background: var(--accent); color: black; border: none; padding: 18px; 
+            border-radius: 12px; cursor: pointer; font-weight: 800; width: 100%; margin-top: 10px;
+        }
+        .admin-item { display: flex; justify-content: space-between; align-items: center; background: #050508; padding: 12px; border-radius: 10px; margin-bottom: 8px; border: 1px solid #111; }
+        .btn-del { color: #ff4757; background: none; border: none; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <header>
     <img src=https://i.ibb.co/BHfbyhfx/LOGO-FERNANDO-03.png alt="FO Tecnología Logo" class="logo-main">
-    <p style="color: var(--muted); text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">High Performance Computing</p>
+    <p style="color: var(--accent); font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem;">Premium Hardware Paraguay</p>
 </header>
 
 <div class="controls-container">
-    <div class="search-box">
-        <input type="text" id="search-input" placeholder="¿Qué hardware buscas?" oninput="filterProducts()">
-    </div>
-    <div class="filter-tags" id="category-filters">
+    <input type="text" id="search-input" placeholder="Buscar por modelo o componente..." oninput="updateView()">
+    <div class="filter-tags" id="filters">
         <div class="tag active" onclick="setCategory('Todos', this)">Todos</div>
         <div class="tag" onclick="setCategory('Notebooks', this)">Notebooks</div>
         <div class="tag" onclick="setCategory('Componentes', this)">Componentes</div>
@@ -118,17 +114,13 @@
 
 <div class="grid" id="product-grid"></div>
 
-<div class="footer-admin-trigger" onclick="document.getElementById('admin-panel').scrollIntoView()">
-    — Panel de Administración —
-</div>
-
-<section id="admin-panel">
+<section class="admin-section">
     <div class="admin-box">
-        <h2 style="text-align:center; font-family:'Syne'; margin-bottom:2rem">Gestión de Inventario</h2>
+        <h2 style="font-family:'Syne'; margin-bottom: 2rem;">Panel de Administración</h2>
         
         <div id="admin-auth">
-            <input type="password" id="admin-pass" placeholder="Password Admin">
-            <button class="btn-publish" style="margin-top:10px" onclick="checkAuth()">Entrar</button>
+            <input type="password" id="admin-pass" placeholder="Contraseña">
+            <button class="btn-action" onclick="checkAuth()">Ingresar al Sistema</button>
         </div>
 
         <div id="admin-form" style="display:none">
@@ -141,43 +133,34 @@
                     <option value="Monitores">Monitores</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label>Nombre del Producto</label>
-                <input type="text" id="p-name">
-            </div>
-            <div class="form-group">
-                <label>Precio (Gs.)</label>
-                <input type="number" id="p-price">
-            </div>
-            <div class="form-group">
-                <label>Imagen (PC)</label>
-                <input type="file" id="p-file" accept="image/*">
-            </div>
-            <button class="btn-publish" id="btn-save" onclick="handleUpload()">Publicar en Web</button>
+            <div class="form-group"><label>Nombre del Producto</label><input type="text" id="p-name" placeholder="Ej: RTX 4080 Super"></div>
+            <div class="form-group"><label>Precio (Gs.)</label><input type="number" id="p-price" placeholder="8500000"></div>
+            <div class="form-group"><label>Imagen desde tu PC</label><input type="file" id="p-file" accept="image/*"></div>
+            <button class="btn-action" id="btn-save" onclick="uploadToImgBB()">Publicar Producto</button>
             
-            <div id="admin-list" style="margin-top:3rem"></div>
+            <div id="admin-list" style="margin-top:40px; text-align: left;"></div>
         </div>
     </div>
 </section>
 
 <script>
     const IMGBB_API_KEY = "224e28c7b6d19326d2b17e8de9cb2130";
-    const WHATSAPP_NUM = "+595991961234"; // Cambia a tu número
-    
-    let products = JSON.parse(localStorage.getItem('fo_inventory')) || [];
-    let currentCategory = "Todos";
+    const WHATSAPP_NUM = "+595991961234"; // Reemplaza con tu número
+    const ADMIN_KEY = "123456";
 
-    // --- SUBIDA A IMGBB ---
-    async function handleUpload() {
+    let products = JSON.parse(localStorage.getItem('fo_products')) || [];
+    let activeCategory = "Todos";
+
+    async function uploadToImgBB() {
         const file = document.getElementById('p-file').files[0];
         const name = document.getElementById('p-name').value;
         const price = document.getElementById('p-price').value;
         const cat = document.getElementById('p-cat').value;
         const btn = document.getElementById('btn-save');
 
-        if(!file || !name || !price) return alert("Completa todos los campos.");
+        if(!file || !name || !price) return alert("Completa todos los datos");
 
-        btn.innerText = "Subiendo..."; btn.disabled = true;
+        btn.innerText = "Subiendo imagen..."; btn.disabled = true;
 
         const formData = new FormData();
         formData.append("image", file);
@@ -185,71 +168,67 @@
         try {
             const resp = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: "POST", body: formData });
             const result = await resp.json();
-
             if(result.success) {
                 products.push({ id: Date.now(), name, price, cat, img: result.data.url });
-                localStorage.setItem('fo_inventory', JSON.stringify(products));
-                alert("Producto añadido.");
+                localStorage.setItem('fo_products', JSON.stringify(products));
+                alert("¡Publicado!");
                 location.reload();
             }
-        } catch (e) { alert("Error al subir."); }
-        finally { btn.innerText = "Publicar en Web"; btn.disabled = false; }
+        } catch (e) { alert("Error de conexión"); }
+        finally { btn.innerText = "Publicar Producto"; btn.disabled = false; }
     }
 
-    // --- FILTROS ---
     function setCategory(cat, el) {
-        currentCategory = cat;
+        activeCategory = cat;
         document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
         el.classList.add('active');
-        filterProducts();
+        updateView();
     }
 
-    function filterProducts() {
+    function updateView() {
         const grid = document.getElementById('product-grid');
         const search = document.getElementById('search-input').value.toLowerCase();
         
-        const filtered = products.filter(p => {
-            const matchesCat = currentCategory === "Todos" || p.cat === currentCategory;
-            const matchesSearch = p.name.toLowerCase().includes(search);
-            return matchesCat && matchesSearch;
-        });
-
-        grid.innerHTML = filtered.map(p => `
+        grid.innerHTML = products.filter(p => {
+            const matchCat = activeCategory === "Todos" || p.cat === activeCategory;
+            const matchSearch = p.name.toLowerCase().includes(search);
+            return matchCat && matchSearch;
+        }).map(p => `
             <div class="card">
-                <span class="category-label">${p.cat}</span>
+                <span class="cat-badge">${p.cat}</span>
                 <img src="${p.img}">
                 <h3>${p.name}</h3>
                 <div class="price">${new Intl.NumberFormat('es-PY').format(p.price)} Gs.</div>
-                <a href="https://wa.me/${WHATSAPP_NUM}?text=Me interesa: ${p.name}" class="btn-wa">🛒 Consultar</a>
+                <a href="https://wa.me/${WHATSAPP_NUM}?text=Hola FO Tecnología! Me interesa: ${p.name}" class="btn-wa">🛒 Consultar WhatsApp</a>
             </div>
         `).join('');
     }
 
-    // --- ADMIN ---
     function checkAuth() {
-        if(document.getElementById('admin-pass').value === "1234") { // Contraseña por defecto
+        if(document.getElementById('admin-pass').value === ADMIN_KEY) {
             document.getElementById('admin-auth').style.display = 'none';
             document.getElementById('admin-form').style.display = 'block';
             renderAdminList();
-        }
+        } else { alert("Clave incorrecta"); }
     }
 
     function renderAdminList() {
         const list = document.getElementById('admin-list');
-        list.innerHTML = "<h4>Inventario Actual</h4>";
+        list.innerHTML = "<h4>Inventario Activo</h4>";
         products.forEach(p => {
             list.innerHTML += `<div class="admin-item"><span>${p.name}</span><button class="btn-del" onclick="deleteP(${p.id})">Borrar</button></div>`;
         });
     }
 
     function deleteP(id) {
-        products = products.filter(p => p.id !== id);
-        localStorage.setItem('fo_inventory', JSON.stringify(products));
-        filterProducts(); renderAdminList();
+        if(confirm("¿Eliminar?")) {
+            products = products.filter(p => p.id !== id);
+            localStorage.setItem('fo_products', JSON.stringify(products));
+            updateView(); renderAdminList();
+        }
     }
 
-    renderCatalog(); // Primera carga
-    filterProducts();
+    updateView();
 </script>
 </body>
 </html>
