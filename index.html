@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FO Tecnología | High-End Hardware</title>
+    <title>FO Tecnología | Gestión Pro</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -19,18 +19,9 @@
             scroll-behavior: smooth;
         }
 
-        /* HEADER CON EL NUEVO LOGO */
-        header {
-            padding: 4rem 1rem; text-align: center;
-            background: radial-gradient(circle at center, #0e1a14 0%, var(--bg) 80%);
-        }
-        .logo-main {
-            max-width: 320px; /* Tamaño ajustado para tu nuevo logo */
-            filter: drop-shadow(0 0 20px rgba(0, 255, 163, 0.3));
-            margin-bottom: 1rem;
-            transition: 0.4s ease;
-        }
-        .logo-main:hover { transform: scale(1.05); filter: drop-shadow(0 0 30px rgba(0, 255, 163, 0.5)); }
+        /* HEADER */
+        header { padding: 4rem 1rem; text-align: center; background: radial-gradient(circle at center, #0e1a14 0%, var(--bg) 80%); }
+        .logo-main { max-width: 320px; filter: drop-shadow(0 0 20px rgba(0, 255, 163, 0.3)); margin-bottom: 1rem; }
 
         /* BUSCADOR Y FILTROS */
         .controls-container { max-width: 800px; margin: -40px auto 4rem; padding: 0 1.5rem; }
@@ -40,75 +31,58 @@
             color: white; font-size: 1.1rem; outline: none; box-sizing: border-box;
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
-        #search-input:focus { border-color: var(--accent); box-shadow: 0 0 20px rgba(0, 255, 163, 0.2); }
 
         .filter-tags { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
         .tag {
             background: #11111d; border: 1px solid #222; padding: 10px 22px;
             border-radius: 30px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;
-            color: var(--muted); font-weight: 500;
+            color: var(--muted);
         }
-        .tag.active, .tag:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,255,163,0.05); }
+        .tag.active { border-color: var(--accent); color: var(--accent); background: rgba(0,255,163,0.05); }
 
-        /* GRID DE PRODUCTOS */
-        .grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2.5rem; padding: 0 2rem; max-width: 1300px; margin: 0 auto;
-        }
-        .card {
-            background: var(--surface); border-radius: 24px; padding: 25px;
-            border: 1px solid rgba(255,255,255,0.05); transition: 0.4s;
-            display: flex; flex-direction: column; position: relative;
-        }
-        .card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
+        /* GRID */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2.5rem; padding: 0 2rem; max-width: 1300px; margin: 0 auto; }
+        .card { background: var(--surface); border-radius: 24px; padding: 25px; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; display: flex; flex-direction: column; }
         .card img { width: 100%; height: 260px; object-fit: contain; border-radius: 16px; background: #050508; margin-bottom: 20px; }
-        .card .cat-badge { font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; font-weight: bold; margin-bottom: 8px; }
-        .card h3 { font-family: 'Syne', sans-serif; font-size: 1.25rem; margin: 0 0 10px; height: 2.5em; overflow: hidden; }
         .price { color: #fff; font-size: 1.8rem; font-weight: 800; margin-bottom: 25px; font-family: 'Syne', sans-serif; }
+        .btn-wa { background: var(--wa); color: #000; text-decoration: none; padding: 16px; border-radius: 14px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; }
 
-        .btn-wa {
-            background: var(--wa); color: #000; text-decoration: none;
-            padding: 16px; border-radius: 14px; font-weight: bold;
-            display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s;
-        }
-        .btn-wa:hover { filter: brightness(1.1); transform: scale(1.02); }
-
-        /* PANEL ADMIN AL FINAL */
-        .admin-section {
-            background: #08080c; border-top: 1px solid #1a1a24; padding: 6rem 1rem;
-            margin-top: 100px; text-align: center;
-        }
-        .admin-box { max-width: 500px; margin: 0 auto; background: var(--surface); padding: 3rem; border-radius: 24px; border: 1px solid #222; }
-        .form-group { margin-bottom: 20px; text-align: left; }
+        /* ADMIN SECTION */
+        .admin-section { background: #08080c; border-top: 1px solid #1a1a24; padding: 6rem 1rem; margin-top: 100px; }
+        .admin-box { max-width: 600px; margin: 0 auto; background: var(--surface); padding: 3rem; border-radius: 24px; border: 1px solid #222; }
+        .form-group { margin-bottom: 20px; }
         label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 0.9rem; }
-        input, select { 
-            width: 100%; padding: 14px; border-radius: 10px; border: 1px solid #222;
-            background: #030305; color: white; box-sizing: border-box; outline: none;
+        input, select { width: 100%; padding: 14px; border-radius: 10px; border: 1px solid #222; background: #030305; color: white; box-sizing: border-box; }
+        
+        .btn-action { background: var(--accent); color: black; border: none; padding: 18px; border-radius: 12px; cursor: pointer; font-weight: 800; width: 100%; }
+        .btn-cancel { background: #333; color: white; border: none; padding: 10px; border-radius: 10px; cursor: pointer; width: 100%; margin-top: 10px; display: none; }
+
+        /* LISTA ADMIN CON EDICIÓN */
+        .admin-item { 
+            display: flex; justify-content: space-between; align-items: center; 
+            background: #050508; padding: 15px; border-radius: 12px; margin-bottom: 10px; border: 1px solid #1a1a1a; 
         }
-        input:focus { border-color: var(--accent); }
-        .btn-action { 
-            background: var(--accent); color: black; border: none; padding: 18px; 
-            border-radius: 12px; cursor: pointer; font-weight: 800; width: 100%; margin-top: 10px;
-        }
-        .admin-item { display: flex; justify-content: space-between; align-items: center; background: #050508; padding: 12px; border-radius: 10px; margin-bottom: 8px; border: 1px solid #111; }
-        .btn-del { color: #ff4757; background: none; border: none; cursor: pointer; font-weight: bold; }
+        .admin-item-info { display: flex; align-items: center; gap: 10px; }
+        .admin-item-info img { width: 40px; height: 40px; object-fit: cover; border-radius: 5px; }
+        .admin-actions { display: flex; gap: 10px; }
+        .btn-edit { color: var(--accent); background: none; border: 1px solid var(--accent); padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; }
+        .btn-del { color: #ff4757; background: none; border: 1px solid #ff4757; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
 <header>
-    <img src=https://i.ibb.co/BHfbyhfx/LOGO-FERNANDO-03.png alt="FO Tecnología Logo" class="logo-main">
+    <img src="https://i.ibb.co/C0mR0K1T/LOGO-FERNANDO-03.png" alt="FO Tecnología Logo" class="logo-main">
     <p style="color: var(--accent); font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem;">Premium Hardware Paraguay</p>
 </header>
 
 <div class="controls-container">
-    <input type="text" id="search-input" placeholder="Buscar por modelo o componente..." oninput="updateView()">
+    <input type="text" id="search-input" placeholder="Buscar producto..." oninput="updateView()">
     <div class="filter-tags" id="filters">
         <div class="tag active" onclick="setCategory('Todos', this)">Todos</div>
         <div class="tag" onclick="setCategory('Notebooks', this)">Notebooks</div>
         <div class="tag" onclick="setCategory('Componentes', this)">Componentes</div>
         <div class="tag" onclick="setCategory('Periféricos', this)">Periféricos</div>
-        <div class="tag" onclick="setCategory('Monitores', this)">Monitores</div>
     </div>
 </div>
 
@@ -116,94 +90,120 @@
 
 <section class="admin-section">
     <div class="admin-box">
-        <h2 style="font-family:'Syne'; margin-bottom: 2rem;">Panel de Administración</h2>
+        <h2 id="admin-title" style="font-family:'Syne'; margin-bottom: 1.5rem; text-align: center;">Cargar Nuevo Producto</h2>
         
-        <div id="admin-auth">
+        <div id="admin-auth" style="text-align: center;">
             <input type="password" id="admin-pass" placeholder="Contraseña">
-            <button class="btn-action" onclick="checkAuth()">Ingresar al Sistema</button>
+            <button class="btn-action" style="margin-top:15px" onclick="checkAuth()">Ingresar al Sistema</button>
         </div>
 
         <div id="admin-form" style="display:none">
+            <input type="hidden" id="edit-id">
+
             <div class="form-group">
                 <label>Categoría</label>
                 <select id="p-cat">
                     <option value="Notebooks">Notebooks</option>
                     <option value="Componentes">Componentes</option>
                     <option value="Periféricos">Periféricos</option>
-                    <option value="Monitores">Monitores</option>
                 </select>
             </div>
-            <div class="form-group"><label>Nombre del Producto</label><input type="text" id="p-name" placeholder="Ej: RTX 4080 Super"></div>
-            <div class="form-group"><label>Precio (Gs.)</label><input type="number" id="p-price" placeholder="8500000"></div>
-            <div class="form-group"><label>Imagen desde tu PC</label><input type="file" id="p-file" accept="image/*"></div>
-            <button class="btn-action" id="btn-save" onclick="uploadToImgBB()">Publicar Producto</button>
+            <div class="form-group"><label>Nombre</label><input type="text" id="p-name"></div>
+            <div class="form-group"><label>Precio (Gs.)</label><input type="number" id="p-price"></div>
+            <div class="form-group">
+                <label>Imagen (Opcional si ya tiene una)</label>
+                <input type="file" id="p-file" accept="image/*">
+            </div>
             
-            <div id="admin-list" style="margin-top:40px; text-align: left;"></div>
+            <button class="btn-action" id="btn-save" onclick="processProduct()">Publicar Producto</button>
+            <button class="btn-cancel" id="btn-cancel" onclick="resetForm()">Cancelar Edición</button>
+            
+            <div id="admin-list" style="margin-top:40px;"></div>
         </div>
     </div>
 </section>
 
 <script>
     const IMGBB_API_KEY = "224e28c7b6d19326d2b17e8de9cb2130";
-    const WHATSAPP_NUM = "+595991961234"; // Reemplaza con tu número
-    const ADMIN_KEY = "123456";
+    const WHATSAPP_NUM = "59598XXXXXXXX"; 
+    const ADMIN_KEY = "1234";
 
     let products = JSON.parse(localStorage.getItem('fo_products')) || [];
     let activeCategory = "Todos";
 
-    async function uploadToImgBB() {
+    // --- FUNCIÓN PRINCIPAL: CARGAR O EDITAR ---
+    async function processProduct() {
         const file = document.getElementById('p-file').files[0];
         const name = document.getElementById('p-name').value;
         const price = document.getElementById('p-price').value;
         const cat = document.getElementById('p-cat').value;
+        const editId = document.getElementById('edit-id').value;
         const btn = document.getElementById('btn-save');
 
-        if(!file || !name || !price) return alert("Completa todos los datos");
+        if(!name || !price) return alert("Nombre y Precio son obligatorios.");
 
-        btn.innerText = "Subiendo imagen..."; btn.disabled = true;
+        btn.innerText = "Procesando..."; btn.disabled = true;
 
-        const formData = new FormData();
-        formData.append("image", file);
+        let imageUrl = "";
 
-        try {
-            const resp = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: "POST", body: formData });
-            const result = await resp.json();
-            if(result.success) {
-                products.push({ id: Date.now(), name, price, cat, img: result.data.url });
-                localStorage.setItem('fo_products', JSON.stringify(products));
-                alert("¡Publicado!");
-                location.reload();
-            }
-        } catch (e) { alert("Error de conexión"); }
-        finally { btn.innerText = "Publicar Producto"; btn.disabled = false; }
-    }
+        // Si hay un archivo nuevo, lo subimos
+        if(file) {
+            const formData = new FormData();
+            formData.append("image", file);
+            try {
+                const resp = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: "POST", body: formData });
+                const result = await resp.json();
+                if(result.success) imageUrl = result.data.url;
+            } catch (e) { alert("Error al subir imagen."); }
+        }
 
-    function setCategory(cat, el) {
-        activeCategory = cat;
-        document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
-        el.classList.add('active');
+        if(editId) {
+            // MODO EDICIÓN
+            const index = products.findIndex(p => p.id == editId);
+            products[index].name = name;
+            products[index].price = price;
+            products[index].cat = cat;
+            if(imageUrl) products[index].img = imageUrl; // Solo cambia imagen si subió una nueva
+        } else {
+            // MODO NUEVO
+            if(!imageUrl) { alert("Debes subir una imagen para productos nuevos."); btn.innerText = "Publicar Producto"; btn.disabled = false; return; }
+            products.push({ id: Date.now(), name, price, cat, img: imageUrl });
+        }
+
+        localStorage.setItem('fo_products', JSON.stringify(products));
+        resetForm();
         updateView();
+        renderAdminList();
+        alert("¡Sistema actualizado!");
     }
 
-    function updateView() {
-        const grid = document.getElementById('product-grid');
-        const search = document.getElementById('search-input').value.toLowerCase();
+    // --- MODO EDICIÓN: LLENAR EL FORMULARIO ---
+    function editProduct(id) {
+        const p = products.find(prod => prod.id == id);
+        document.getElementById('edit-id').value = p.id;
+        document.getElementById('p-name').value = p.name;
+        document.getElementById('p-price').value = p.price;
+        document.getElementById('p-cat').value = p.cat;
         
-        grid.innerHTML = products.filter(p => {
-            const matchCat = activeCategory === "Todos" || p.cat === activeCategory;
-            const matchSearch = p.name.toLowerCase().includes(search);
-            return matchCat && matchSearch;
-        }).map(p => `
-            <div class="card">
-                <span class="cat-badge">${p.cat}</span>
-                <img src="${p.img}">
-                <h3>${p.name}</h3>
-                <div class="price">${new Intl.NumberFormat('es-PY').format(p.price)} Gs.</div>
-                <a href="https://wa.me/${WHATSAPP_NUM}?text=Hola FO Tecnología! Me interesa: ${p.name}" class="btn-wa">🛒 Consultar WhatsApp</a>
-            </div>
-        `).join('');
+        document.getElementById('admin-title').innerText = "Editando: " + p.name;
+        document.getElementById('btn-save').innerText = "Guardar Cambios";
+        document.getElementById('btn-cancel').style.display = "block";
+        
+        window.scrollTo(0, document.body.scrollHeight);
     }
 
+    function resetForm() {
+        document.getElementById('edit-id').value = "";
+        document.getElementById('p-name').value = "";
+        document.getElementById('p-price').value = "";
+        document.getElementById('p-file').value = "";
+        document.getElementById('admin-title').innerText = "Cargar Nuevo Producto";
+        document.getElementById('btn-save').innerText = "Publicar Producto";
+        document.getElementById('btn-save').disabled = false;
+        document.getElementById('btn-cancel').style.display = "none";
+    }
+
+    // --- FUNCIONES DE VISTA ---
     function checkAuth() {
         if(document.getElementById('admin-pass').value === ADMIN_KEY) {
             document.getElementById('admin-auth').style.display = 'none';
@@ -212,20 +212,53 @@
         } else { alert("Clave incorrecta"); }
     }
 
+    function updateView() {
+        const grid = document.getElementById('product-grid');
+        const search = document.getElementById('search-input').value.toLowerCase();
+        grid.innerHTML = products.filter(p => {
+            const matchCat = activeCategory === "Todos" || p.cat === activeCategory;
+            const matchSearch = p.name.toLowerCase().includes(search);
+            return matchCat && matchSearch;
+        }).map(p => `
+            <div class="card">
+                <img src="${p.img}">
+                <h3>${p.name}</h3>
+                <div class="price">${new Intl.NumberFormat('es-PY').format(p.price)} Gs.</div>
+                <a href="https://wa.me/${WHATSAPP_NUM}?text=Me interesa: ${p.name}" class="btn-wa">🛒 Consultar</a>
+            </div>`).join('');
+    }
+
     function renderAdminList() {
         const list = document.getElementById('admin-list');
-        list.innerHTML = "<h4>Inventario Activo</h4>";
+        list.innerHTML = "<h4>Productos en Sistema</h4>";
         products.forEach(p => {
-            list.innerHTML += `<div class="admin-item"><span>${p.name}</span><button class="btn-del" onclick="deleteP(${p.id})">Borrar</button></div>`;
+            list.innerHTML += `
+                <div class="admin-item">
+                    <div class="admin-item-info">
+                        <img src="${p.img}">
+                        <span>${p.name.substring(0,20)}...</span>
+                    </div>
+                    <div class="admin-actions">
+                        <button class="btn-edit" onclick="editProduct(${p.id})">Editar</button>
+                        <button class="btn-del" onclick="deleteP(${p.id})">Borrar</button>
+                    </div>
+                </div>`;
         });
     }
 
     function deleteP(id) {
-        if(confirm("¿Eliminar?")) {
+        if(confirm("¿Borrar permanentemente?")) {
             products = products.filter(p => p.id !== id);
             localStorage.setItem('fo_products', JSON.stringify(products));
             updateView(); renderAdminList();
         }
+    }
+
+    function setCategory(cat, el) {
+        activeCategory = cat;
+        document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+        el.classList.add('active');
+        updateView();
     }
 
     updateView();
